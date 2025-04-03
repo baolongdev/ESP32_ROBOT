@@ -22,10 +22,10 @@ void MotorPWM::setDuty(float duty)
 
     motorDuty = (uint16_t)((duty / 100.0) * ((1 << config.resolution) - 1));
     ledcWrite(config.channel, motorDuty);
-
-    Serial.print("✅ Duty cycle mới: ");
-    Serial.print(duty);
-    Serial.println("%");
+    // Debug
+    // Serial.print("✅ Duty cycle mới: ");
+    // Serial.print(duty);
+    // Serial.println("%");
 }
 
 void MotorPWM::setFrequency(float frequency)

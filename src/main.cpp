@@ -5,12 +5,14 @@
 
 Receiver receiver;
 ChannelConfig channels[] = {
-    {16, 0, 0, false},
-    {15, 0, 0, false},
-    {7, 0, 0, false},
     {6, 0, 0, false},
-    {5, 0, 0, true},
-    {4, 0, 0, true},
+    {7, 0, 0, false},
+    // {16, 0, 0, false},
+    // {15, 0, 0, false},
+    // {7, 0, 0, false},
+    // {6, 0, 0, false},
+    // {5, 0, 0, true},
+    // {4, 0, 0, true},
 };
 uint8_t numChannels = sizeof(channels) / sizeof(ChannelConfig);
 MotorPWM leftMotor;
@@ -39,15 +41,33 @@ void setup()
 
 void loop()
 {
-  int16_t throttle = receiver.getChannelValue(1);
-
+  int16_t throttle = receiver.getChannelValue(1); // Lấy giá trị ga
+  int16_t steering = receiver.getChannelValue(3); // Lấy giá trị vô lăng
+  Serial.print("steering: ");
+  Serial.println(steering);
   if (throttle > 1) // Tiến
   {
-    carControl.moveForward(throttle);
+    // carControl.moveForward(throttle);
+    if (steering != 0)
+    {
+      carControl.moveForwardTurn(throttle, steering);
+    }
+    else
+    {
+      carControl.moveForward(throttle);
+    }
   }
   else if (throttle < -1) // Lùi
   {
-    carControl.moveBackward(throttle);
+    // carControl.moveBackward(throttle);
+    if (steering != 0)
+    {
+      carControl.moveBackwardTurn(throttle, steering);
+    }
+    else
+    {
+      carControl.moveBackward(throttle);
+    }
   }
   else
   {

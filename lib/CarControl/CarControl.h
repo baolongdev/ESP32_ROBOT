@@ -20,8 +20,11 @@ public:
     void init(const CarControlConfig &config);
     void moveForward(float speed);
     void moveBackward(float speed);
-    void turnLeft(float speed);
-    void turnRight(float speed);
+    void moveForwardTurn(float speed, float steering);
+    void moveBackwardTurn(float speed, float steering);
+
+    void setMotorDuty(float leftDuty, float rightDuty);
+    float mapSpeed(float speed, float minSpeed, float maxSpeed);
     void stop();
     void smoothStop(uint32_t waitTime);
 

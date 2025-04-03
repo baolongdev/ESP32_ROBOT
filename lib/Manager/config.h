@@ -43,8 +43,8 @@
 // #define BACKWARD_MAX 10.8
 
 // Định nghĩa chân điều khiển động cơ
-#define LEFT_MOTOR_PIN 41
-#define RIGHT_MOTOR_PIN 42
+#define LEFT_MOTOR_PIN 5
+#define RIGHT_MOTOR_PIN 47
 
 // Định nghĩa kênh PWM
 #define LEFT_MOTOR_CHANNEL 0
